@@ -46,6 +46,7 @@ router.post('/signin', (req, res)=>{
                     user: user,
                     token: token
                 });
+                
             } else res.render('signin', {
                 retry: true
             });
