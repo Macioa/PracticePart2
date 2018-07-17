@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const singerSchema = new mongoose.Schema({
     name: String,
-    songs: [songSchema]
+    //songs: [songSchema]
 })
 
 
