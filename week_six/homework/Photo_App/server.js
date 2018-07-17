@@ -9,8 +9,11 @@ require('./Db/db')
 
 app.use(bodyparser.urlencoded({encoded: false}));
 
+const photoController = require('./Controllers/photoController');
+app.use('/photos', photoController);
+
 const userController = require('./Controllers/userController');
-app.use('/users', userController)
+app.use('/users', userController);
 
 //   localhost:port/status
 app.get("/status", (req, res) =>{

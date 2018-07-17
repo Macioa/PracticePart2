@@ -1,7 +1,6 @@
 {
-  "name": "photoapp",
+  "name": "singersandsongs",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,11 +8,13 @@
   },
   "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "jsonwebtoken": "^8.3.0",
     "method-override": "^3.0.0",
-    "mongoose": "^5.2.4"
+    "mongodb": "^3.1.1",
+    "mongoose": "^5.2.4",
+    "nodemon": "^1.18.2"
   }
 }
