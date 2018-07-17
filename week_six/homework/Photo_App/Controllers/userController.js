@@ -10,10 +10,16 @@ router.get('/register', (req, res)=>{
 })
 
 router.post('/', (req, res)=>{
-    Users.create(req.body, (err, user)=>{
+    Users.find({username: req.body.username}, (err, user)=>{
         if (err)
-            console.error(err)
-        else res.redirect('/')
+            console.error(err);
+        else {    
+            Users.create(req.body, (err, user)=>{
+                if (err)
+                    console.error(err)
+                else res.redirect('/')
+            })
+        }
     })
 })
 
@@ -39,26 +45,41 @@ router.post('/signin', (req, res)=>{
 
 //read
 router.get('/', (req, res) =>{
-    Users.find({}, (err, users)=>{
-        if (err)
-            console.error(err)
-        else res.render('index.ejs', {
-            users: users
+    if (localStorage.getItem('signedin')===true){
+        Users.find({}, (err, users)=>{
+            if (err)
+                console.error(err)
+            else res.render('index.ejs', {
+                users: users
+            })
         })
-    })
+    }
+    else res.render('signin.ejs');
 })
 
-router.get('/:id', (err, res)=>{
-    Users.findById(req.param.id, (err, user)=>{
-        if (err)
-            console.log(err)
-        else res.render('show.ejs', {
-            user: user
+router.get('/:id', (req, res)=>{
+    if (localStorage.getItem('signedin')===true){
+        Users.findById(req.param.id, (err, user)=>{
+            if (err)
+                console.log(err)
+            else res.render('show.ejs', {
+                user: user
+            })
         })
-    })
+    } else res.render('signin.ejs');
 })
 
 //update
+router.put('/:id', (req, res)=>{
+    if (localStorage.getItem('signedin')===true){
+        Users.findByIdAndUpdate(req.param.id, (err, user)=>{
+            if (err)
+                console.error(err);
+            else res.redirect('/');
+        })
+    } else res.render('signin.ejs')
+})
+
 
 //delete
 
