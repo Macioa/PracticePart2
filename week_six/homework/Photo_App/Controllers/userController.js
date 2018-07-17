@@ -74,7 +74,7 @@ router.get('/:id', (req, res)=>{
 //update
 router.put('/:id', (req, res)=>{
     if (localStorage.getItem('signedin')===true){
-        Users.findByIdAndUpdate(req.param.id, (err, user)=>{
+        Users.findByIdAndUpdate(req.param.id, {new: true}, (err, user)=>{
             if (err)
                 console.error(err);
             else res.redirect('/');
