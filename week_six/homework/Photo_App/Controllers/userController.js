@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const jwt = require('jsonwebtoken')
+
 const Users = require('../Models/User.js');
 
 
@@ -34,15 +36,22 @@ router.post('/signin', (req, res)=>{
         else {
             if (req.body.password===user.password){
                 localStorage.setItem('signedin', true)
+
+                const token = jwt.sign({
+                    sub: user.id,
+                    username: user.username
+                }, "SecretKeyString", {expiresIn: "2 minutes"});
+
                 res.render('show.ejs', {
-                    user: user
-                })
+                    user: user,
+                    token: token
+                });
             } else res.render('signin', {
                 retry: true
-            })
+            });
         }
-    })
-})
+    });
+});
 
 
 //read

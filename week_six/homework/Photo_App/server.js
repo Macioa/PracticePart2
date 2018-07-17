@@ -3,8 +3,11 @@ const port = process.env.PORT || 3000
 const express = require('express');
 const app = express();
 
+const bodyparser = require('body-parser')
+
 require('./Db/db')
 
+app.use(bodyparser.urlencoded({encoded: false}));
 
 const userController = require('./Controllers/userController');
 app.use('/users', userController)
@@ -15,7 +18,7 @@ app.get("/status", (req, res) =>{
 
     res
     .status(200)
-    .send(`Server time is ${localTime}.`)
+    .send(`Server running. Local time is ${localTime}.`)
 })
 
 //404 on all unrouted pages
