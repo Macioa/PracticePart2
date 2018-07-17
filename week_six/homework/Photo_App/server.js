@@ -3,11 +3,14 @@ const port = process.env.PORT || 3000
 const express = require('express');
 const app = express();
 
-const bodyparser = require('body-parser')
+const bodyparser = require('body-parser');
+const methodoverride = require('method-override');
 
 require('./Db/db')
 
+app.use(methodoverride('_method'));
 app.use(bodyparser.urlencoded({encoded: false}));
+
 
 const photoController = require('./Controllers/photoController');
 app.use('/photos', photoController);

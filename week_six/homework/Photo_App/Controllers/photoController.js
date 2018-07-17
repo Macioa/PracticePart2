@@ -40,6 +40,7 @@ router.get('/:id', (req, res)=>{
     })
 })
 
+//update
 router.get('/:id/edit', (req, res)=>{
     Photos.findById(req.params.id, (err, photo)=>{
         if (err)
@@ -61,7 +62,8 @@ router.put('/:id', (req, res)=>{
         }
     })
 })
-            
+
+//delete
 router.delete('/:id', (req, res)=>{
     Photos.findByIdAndRemove(req.params.id, (err, deleted)=>{
         if (err)
