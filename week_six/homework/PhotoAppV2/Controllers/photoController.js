@@ -136,7 +136,6 @@ router.delete('/:id', (req, res)=>{
         if (err)
             console.error(err)
         else {
-            console.log(`removed photo id ${photo._id}`)
             res.redirect('/');
         }
     })
