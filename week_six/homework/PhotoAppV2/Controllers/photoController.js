@@ -86,8 +86,17 @@ router.get('/', (req, res)=>{
 router.get('/:username/photos', (req, res)=>{
     Photos.find({user:req.params.username}, (err, photos)=>{
         res.render('photos/index.ejs',{
-            photos:photos
+            photos:photos,
+            username: req.params.username
         })
+    })
+})
+
+router.put('/:id', (req, res)=>{
+    Photos.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, photo)=>{
+        if (err)
+            console.error(err)
+        else console.log(`updated photo id ${photo._id}`)
     })
 })
 
