@@ -45,21 +45,35 @@ router.get('/:id', (req, res) => {
   });
 });
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', async (req, res) => {
 
-  Dog.findById(req.params.id, (err, foundDog) => {
-    res.render('edit.ejs', {
+  try {
+    const foundDog = await Dog.findById(req.params.id);
+    res.render('edit.ejs',{
       dog: foundDog
-    });
-  });
+    })
+  } catch {
+    res.send (err)
+  }
+  // Dog.findById(req.params.id, (err, foundDog) => {
+  //   res.render('edit.ejs', {
+  //     dog: foundDog
+  //   });
+  // });
 
 });
 
-router.put('/:id', (req, res) => {
-  Dog.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedDog)=> {
-    console.log(updatedDog, ' this is updatedDog');
+router.put('/:id', async (req, res) => {
+  try {
+    const updatedDog = await Dog.findByIdAndUpdate(req.params.id, req.body, {new:true},);
     res.redirect('/dogs');
-  });
+  } catch {
+    res.send(err);
+  }
+  // Dog.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedDog)=> {
+  //   console.log(updatedDog, ' this is updatedDog');
+  //   res.redirect('/dogs');
+  // });
 });
 
 
