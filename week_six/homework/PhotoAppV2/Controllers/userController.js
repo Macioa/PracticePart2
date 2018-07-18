@@ -1,18 +1,29 @@
 const express = require('express');
 const router = express.Router();
 const Users = require('../models/users');
+const Photos = require('../models/photos')
 
 const chalk = require('chalk');
-
 
 //create
 router.get('/new', (req, res) =>{
     res.render('users/new.ejs');
 });
 
+//upload photo from user
+router.get('/:id/upload', (req, res)=>{
+    Users.findById(req.params.id, (err, user)=>{
+        if (err)
+            console.error(err)
+        else res.render('photos/newFrom.ejs',{
+            user: user
+        })
+    })
+})
+
 router.post('/', (req, res) =>{
     let newUser = { 
-        'name' : req.body.name, 
+        'username' : req.body.name, 
         'email' : req.body.email
     }
     Users.create(req.body, (err, created)=>{
