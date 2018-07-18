@@ -15,8 +15,11 @@ const bodyparser = require('body-parser');
 app.use(bodyparser.json()); 
 app.use( bodyparser.urlencoded( {extended: false} ));
 
-const controller = require('./controllers/userController')
-app.use('/users', controller);
+const userController = require('./controllers/userController')
+app.use('/users', userController);
+
+const photoController = require('./controllers/photoController')
+app.use('/photos', photoController);
 
 app.listen(port, () => {    
     console.log();

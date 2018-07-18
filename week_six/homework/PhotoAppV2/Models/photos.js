@@ -6,8 +6,5 @@ const photoSchema = new mongoose.Schema({
     about: String
 });
 
-userSchema.index(
-    { 'name' : 'text' },
-  );
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Photo', photoSchema);
