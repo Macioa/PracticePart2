@@ -45,6 +45,21 @@ const sampleData = [
         user: "ryan",
         url: "https://images.pexels.com/photos/196634/pexels-photo-196634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         about: "an image from pexels"
+    },
+    {
+        user: "yuri",
+        url: "https://images.pexels.com/photos/1073773/pexels-photo-1073773.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350",
+        about: "an image from pexels"
+    },
+    {
+        user: "george",
+        url: "https://images.pexels.com/photos/861132/pexels-photo-861132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350",
+        about: "an image from pexels"
+    },
+    {
+        user: "bob",
+        url: "https://images.pexels.com/photos/17679/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=350",
+        about: "an image from pexels"
     }
 ]
 
@@ -104,6 +119,7 @@ router.get('/:id', (req,res)=>{
 })
 
 router.put('/:id', (req, res)=>{
+    console.log('update route reached')
     Photos.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, photo)=>{
         if (err)
             console.error(err)
