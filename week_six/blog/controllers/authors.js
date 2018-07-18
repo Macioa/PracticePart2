@@ -86,19 +86,24 @@ Author.create(req.body, (err, createdAuthor) => {
 // Delete Route
 //==========================================
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res)=>{
+	Author.findByIdAndRemove(req.params.id, (err, foundAuthor)=>{
+		const articleIds = [];
+		for (let i = 0; i < foundAuthor.articles.length; i++) {
+			articleIds.push(foundAuthor.articles[i]._id);
+		}
+		Article.remove(
+			{
+				_id : {
+					$in: articleIds
+				}
+			},
+			(err, data)=>{
+				res.redirect('/authors');
+			}
+		);
+	});
+});
 
-  // Delete a specific fruit
-  console.log(req.params.id, ' this is params in delete')
-  Author.findByIdAndRemove(req.params.id, (err, deletedAuthor) => {
-    if(err){
-      console.log(err, ' this is error in delete')
-      res.send(err);
-    } else {
-      console.log(deletedAuthor, ' this is deletedauthor');
-      res.redirect('/authors');
-    }
-  });
-})
 
 module.exports = router;

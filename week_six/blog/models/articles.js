@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Author = require('../models/authors.js')
 
 const articleSchema = mongoose.Schema({
     title: String,

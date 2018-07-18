@@ -1,31 +1,29 @@
+const port = 3000;
+
 const express = require('express');
 const app = express();
-const bodyParser     = require('body-parser');
-const methodOverride = require('method-override');
-require('./db/db')
 
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(methodOverride('_method'));
+const methodoverride = require('method-override');
+const bodyparser = require('body-parser');
 
-const authorsController = require('./controllers/authors.js');
-const articlesController = require('./controllers/articles.js');
+require('./db/db');
 
+app.use(methodoverride('_method'));
+app.use(bodyparser.urlencoded({encoded: false}));
 
-app.use('/authors', authorsController)
-app.use('/articles', articlesController)
+//app.use(bodyparcer);
 
+const articlesController = require('./Controllers/Articles');
+app.use('/articles', articlesController);
 
-
-app.get('/', (req, res) => {
-  res.render('index.ejs')
-})
+const authorsController = require('./Controllers/Authors');
+app.use('/authors', authorsController);
 
 
+app.get('/', (req, res) =>{
+    res.render('index.ejs');
+});
 
-
-
-
-
-app.listen(3000, () => {
-  console.log('app is listening on port 3000');
-})
+app.listen(port, ()=>{
+    console.log(`server listening on ${port}`);
+});

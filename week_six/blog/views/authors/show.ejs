@@ -1,41 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
     <header>
-      <h1><%=author.name%>'s Page</h1>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/authors">Authors Index</a></li>
+        <h1>Show Page for <%=author.name%></h1>
 
-        </ul>
-      </nav>
+
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/authors">Author Index</a></li>
+            </ul>
+        </nav>
     </header>
 
-<main>
-  <section>
-    <h2>Author Attributes</h2>
-    <ul>
-      <li>Name: <%=author.name%></li>
-
-    </ul>
-
-  </section>
-  <section>
-  <form method="POST" action="/authors/<%=author.id%>?_method=DELETE">
-  <button type="submit">Delete Author</button>
-  </form>
-</section>
-
-<section>
-  <a href="/authors/<%=author.id%>/edit">Edit</a>
-</section>
-</main>
+    <main>
+        <section>
+        <h2>Articles Written By This Author:</h2>
+        <ul>
+            <% for(let i = 0; i < author.articles.length; i++){ %>
+                <li><a href="/articles/<%=author.articles[i]._id%>"><%=author.articles[i].title%></a></li>
+            <% } %>
+        </ul>
+         </section>
 
 
-  </body>
+    <br><br>
+    <form action="/authors/<%=author._id%>?_method=DELETE" method="POST">
+    <input type="submit">Delete</input>
+    </form>
+    </main>
+    </body>
 </html>
