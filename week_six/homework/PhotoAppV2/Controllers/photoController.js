@@ -92,6 +92,17 @@ router.get('/:username/photos', (req, res)=>{
     })
 })
 
+//update 
+router.get('/:id', (req,res)=>{
+    Photos.findById(req.params.id, (err, photo)=>{
+        if (err)
+            console.error(err)
+        else res.render('photos/edit.ejs', {
+            photo:photo
+        })
+    })
+})
+
 router.put('/:id', (req, res)=>{
     Photos.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, photo)=>{
         if (err)
@@ -99,6 +110,18 @@ router.put('/:id', (req, res)=>{
         else console.log(`updated photo id ${photo._id}`)
     })
 })
+
+router.delete('/:id', (req, res)=>{
+    Photos.findByIdAndRemove(req.params.id, (err, photo)=>{
+        if (err)
+            console.error(err)
+        else {
+            console.log(`removed photo id ${photo._id}`)
+            res.redirect('/');
+        }
+    })
+})
+
 
 
 module.exports = router;

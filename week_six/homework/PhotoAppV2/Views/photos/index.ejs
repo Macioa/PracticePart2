@@ -4,7 +4,7 @@
         <title>Class Assignment - Show Pictures</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="../../css/style.css" rel="stylesheet">
     </head>
     <body>
     <h1>Uploaded Images</h1>
@@ -14,7 +14,7 @@
 
     <section>
         <% for(photo of photos){ %>
-            <img src="<%=photo.url%>" alt="<%=photo.about%>"><br>
+            <a href="/photos/<%=photo._id%>"><img src="<%=photo.url%>" alt="<%=photo.about%>"><br></a>
         <%}%>
     </section>
     <a href="/users">Back</a>
