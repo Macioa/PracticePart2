@@ -5,7 +5,28 @@ const Photos = require('../models/photos')
 
 const chalk = require('chalk');
 
+const sampleData = [
+    {
+        username: "ryan",
+        email: "ryan@email.com"
+    },
+    {
+        username: "george",
+        email:"george@email.com"
+    },
+    {
+        username: "bob",
+        email: "bob@email.com"
+    },
+    {
+        username: "yuri",
+        email: "yuri@email.com"
+    }
+]
 
+for (let user of sampleData){
+    Users.create(user, (err, user)=>{console.log(user)})
+}
 
 //create
 router.get('/new', (req, res) =>{
@@ -79,7 +100,7 @@ router.get('/:id', (req, res) =>{
         if (err)
             console.error(err)
         else {
-            res.render('user/show.ejs', {
+            res.render('users/show.ejs', {
                 user: user
             })
             // let photos = []

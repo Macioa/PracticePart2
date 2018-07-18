@@ -8,18 +8,17 @@
 
 </head>
 <body>
-<h1><%=user.photos%></h1>
+
 <h2><%= user.username %><h2>
 <h4><%= user.email%><h4>
 <br><br><br><br>
-    <% for (let photo of photos){%>
-            <img src="<%=photo.url%>" alt="<%=photo.about%>"><br>
-    <%console.log(photo.url)}%>
+
 <br>
 <a href="/users/<%=user._id%>/edit">Edit</a>
 <br>
 <a href="/users/<%=user._id%>/upload">Upload Photo</a>
 <br>
+<a href="/photos/<%=user.username%>/photos"><%=user.username%>'s Uploaded Photos</a>
 <br>
 
 
