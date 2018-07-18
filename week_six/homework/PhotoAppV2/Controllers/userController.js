@@ -7,7 +7,7 @@ const chalk = require('chalk');
 
 //create
 router.get('/new', (req, res) =>{
-    res.render('new.ejs');
+    res.render('users/new.ejs');
 });
 
 router.post('/', (req, res) =>{
@@ -33,14 +33,14 @@ router.get('/', (req, res) =>{
         if (err){
             console.error(chalk.red(err));
         } else
-        res.render('index.ejs', {
+        res.render('users/index.ejs', {
             users: users
         });
     });
 });
 
 router.get('/find', (req, res) =>{
-    res.render('find.ejs');
+    res.render('users/find.ejs');
 });
 
 //https://www.npmjs.com/package/mongoose-text-search
@@ -61,7 +61,7 @@ router.get('/find', (req, res) =>{
 router.get('/:id', (req, res) =>{
     Users.findById(req.params.id, (err, user)=>{
         if (user){
-            res.render('show.ejs', {
+            res.render('users/show.ejs', {
                 user: user
             })
         } else
@@ -73,7 +73,7 @@ router.get('/:id', (req, res) =>{
 router.get('/:id/edit', (req, res) =>{
     let user = Users.findById(req.params.id, (err, user)=>{
         if (user){
-            res.render('edit.ejs', {
+            res.render('users/edit.ejs', {
                 user: user
             })
         } else{
