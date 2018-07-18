@@ -8,11 +8,11 @@
     </head>
     <body>
 
-    <form action="/users/<%=user._id%>/upload" method="POST">
+    <form action="/users/<%=user._id%>/upload?_method=PUT" method="POST">
         Username:
         <br><input type="text" id='username' name='username' value ="<%=user.username%>">
         <br>url:
-        <br><input type="text" name='imgURL'>
+        <br><input type="text" name='url'>
         <br>About:
         <br><input type="textarea" name="about">
         <br>

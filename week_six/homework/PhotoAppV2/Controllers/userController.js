@@ -5,6 +5,8 @@ const Photos = require('../models/photos')
 
 const chalk = require('chalk');
 
+
+
 //create
 router.get('/new', (req, res) =>{
     res.render('users/new.ejs');
@@ -20,6 +22,8 @@ router.get('/:id/upload', (req, res)=>{
         })
     })
 })
+
+
 
 router.post('/', (req, res) =>{
     let newUser = { 
@@ -69,14 +73,29 @@ router.get('/find', (req, res) =>{
     });
 });*/
 
+
 router.get('/:id', (req, res) =>{
     Users.findById(req.params.id, (err, user)=>{
-        if (user){
-            res.render('users/show.ejs', {
+        if (err)
+            console.error(err)
+        else {
+            res.render('user/show.ejs', {
                 user: user
             })
-        } else
-        console.error(chalk.red('Could not find user with id ')+chalk.grey(`${req.params.id}`));
+            // let photos = []
+            // let promise = new Promise(async function call(err, photo){return photo})
+            
+            // Photos.findById(user.photos[0], async function (err, photo){photos.push(photo)})
+            // setTimeout(3000, function(){console.log(photos)});
+            // async function findPhoto(id){
+            //     let photos = []
+            //     let promise = new Promise(Photos.find(id, await function(err, photo){photos.push(photo)}))
+            //     let p = await promise
+            //     console.log(p);
+            //     console.log(photos)
+            // }
+            // findPhoto(user.photos[0])
+        }
     })
 })
 
@@ -105,6 +124,30 @@ router.put('/:id', (req, res) =>{
         }
     })
 });
+
+router.put('/:id/upload', (req, res)=>{
+    Photos.create(req.body, (err, photo)=>{
+        if (err){
+            Photos.findByIdAndRemove(photo._id, (err, photo)=>{})
+        } else {
+            Users.findById(req.params.id, (err, user)=>{
+                console.log(user);
+                let updatedUser = user;
+                updatedUser.photos.push(photo._id.toString());
+                Users.findByIdAndUpdate(user._id, updatedUser, {new:true}, (err, user)=>{
+                    if (err)
+                        console.error(err)
+                    else {
+                        console.log(`Gave ${user.username} a new photo (${user.photos.length}) photos`);
+                        res.redirect(`/users/${user._id}`);
+                    }
+                })
+            })
+        }
+    })
+})
+
+
 
 //delete
 router.delete('/:id', (req, res) =>{

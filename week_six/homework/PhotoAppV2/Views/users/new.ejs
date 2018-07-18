@@ -14,9 +14,12 @@
         <br>Email:
         <br><input type="email" name='email'>
         <br>
-        <br><input type="submit" value="Submit">
+        <br><input type="submit" value="Submit" onclick="onclick()">
     </form>
 
+    <script>
+    const onclick = () => {localStorage.setItem('username', document.getElementById('username').value)}
+    </script>
 
      </body>
 </html>
