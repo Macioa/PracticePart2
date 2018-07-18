@@ -3,7 +3,7 @@ const port = 3000;
 const chalk = require('chalk');
 
 var mongoose = require('./Db/db')
-mongoose = mongoose('mongodb://localhost:27017/userphoto');
+mongoose = mongoose('mongodb://localhost:27017/photo-app');
 
 const express = require('express');
 const app = express();
@@ -22,7 +22,7 @@ const photoController = require('./controllers/photoController')
 app.use('/photos', photoController);
 
 app.get('/', (req, res)=>{
-    res.redirect('/users');
+    res.redirect('/photos');
 })
 
 app.get('*', (req, res)=>{

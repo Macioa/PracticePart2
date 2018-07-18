@@ -82,6 +82,7 @@ router.post('/', (req, res)=>{
                     console.error(err)
                 else {
                     console.log(`Created ${photo}`)
+                    res.redirect('/');
                 }
             })
         }
@@ -123,7 +124,10 @@ router.put('/:id', (req, res)=>{
     Photos.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, photo)=>{
         if (err)
             console.error(err)
-        else console.log(`updated photo id ${photo._id}`)
+        else {
+            console.log(`updated photo id ${photo._id}`)
+            res.redirect('/');
+        }
     })
 })
 
