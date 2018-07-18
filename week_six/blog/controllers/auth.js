@@ -4,7 +4,9 @@ const router = express()
 const User = require('../models/user')
 
 router.get('/', (req, res)=>{
-    res.render('auth/login.ejs')
+    res.render('auth/login.ejs', {
+        loggedIn:req.session.loggedIn
+    })
 })
 
 router.post('/login', (req, res)=>{
@@ -14,7 +16,7 @@ router.post('/login', (req, res)=>{
     req.session.loggedIn = true; //custom property
     req.session.username = req.body.username;
 
-    res.redirect('/articles')
+    res.redirect('/articles');
 })
 
 
