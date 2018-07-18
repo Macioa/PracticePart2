@@ -21,6 +21,13 @@ app.use(bodyparser.urlencoded({encoded: false}));
 
 //app.use(bodyparcer);
 
+app.use((req,res,next)=>{
+    //find origin page to consider redirect
+    if (req.session.loggedIn===true)
+        next();
+    else res.redirect('/auth/login')
+})
+
 const articlesController = require('./Controllers/Articles');
 app.use('/articles', articlesController);
 

@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
             })
         })
     } else {
+        //res.session.message('must log in');
         //res.send('LOG IN FIRST!')
         res.redirect('/auth');
     }
