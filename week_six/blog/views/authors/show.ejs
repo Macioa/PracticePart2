@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <h1><%=author.name%>'s Page</h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/authors">Authors Index</a></li>
+
+        </ul>
+      </nav>
+    </header>
+
+<main>
+  <section>
+    <h2>Author Attributes</h2>
+    <ul>
+      <li>Name: <%=author.name%></li>
+
+    </ul>
+
+  </section>
+  <section>
+  <form method="POST" action="/authors/<%=author.id%>?_method=DELETE">
+  <button type="submit">Delete Author</button>
+  </form>
+</section>
+
+<section>
+  <a href="/authors/<%=author.id%>/edit">Edit</a>
+</section>
+</main>
+
+
+  </body>
+</html>

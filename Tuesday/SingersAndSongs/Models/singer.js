@@ -11,4 +11,4 @@ const singerSchema = new mongoose.Schema({
 const Singer = mongoose.model('Singer', singerSchema);
 
 
-module.exports = Singer
+module.exports = Singer;

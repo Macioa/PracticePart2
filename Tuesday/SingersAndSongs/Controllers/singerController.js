@@ -55,5 +55,12 @@ router.put('/:id', (req, res)=>{
     })
 })
 
+router.delete('/:id', (req, res)=>{
+    Singers.findByIdAndRemove(req.params.id, (err, singer)=>{
+        if (err)
+            console.error(err)
+        else console.log(`Deleted ${singer}`)
+    })
+})
 
 module.exports = router;
