@@ -83,7 +83,6 @@ router.post('/', (req, res) => {
     console.log(createdDog, ' this is the createdDog');
     res.redirect('/dogs');
   });
-
 });
 
 

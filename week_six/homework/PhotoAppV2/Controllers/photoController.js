@@ -63,9 +63,9 @@ const sampleData = [
     }
 ]
 
-for (let image of sampleData){
+/*for (let image of sampleData){
     Photos.create(image, (err, photo)=>{console.log(photo)})
-}
+}*/
 
 //create
 router.get('/new', (req, res) =>{

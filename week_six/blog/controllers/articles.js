@@ -39,18 +39,19 @@ router.get('/new', (req, res)=>{
 
 
 
-router.get('/:id', (req, res)=>{
-    Article.findById(req.params.id, (err, foundArticle)=>{
+router.get('/:id', async (req, res)=>{
+    try{
+        const foundArticle  = await Article.findById(req.params.id);
+        const foundAuthor = await Author.findOne({name: foundArticle.author})
         console.log(foundArticle)
-
-        Author.findOne({'article.id':req.params.id}, (err, foundAuthor)=>{
-            console.log(foundAuthor)
-            res.render('articles/show.ejs', {
-                author: foundAuthor,
-                article: foundArticle
-            });
-        });
-    });
+        console.log(foundAuthor)
+        res.render('articles/show.ejs', {
+            article: foundArticle,
+            author: foundAuthor
+        })
+    } catch {
+        res.send(err)
+    }
 });
 
 

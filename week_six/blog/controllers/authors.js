@@ -6,8 +6,6 @@ const Author = require('../models/authors')
 //=======================================================
 router.get('/', (req, res) => {
   Author.find({}, (err, foundAuthors) => {
-
-
     res.render('authors/index.ejs', {
       authors: foundAuthors
     })
@@ -86,23 +84,12 @@ Author.create(req.body, (err, createdAuthor) => {
 // Delete Route
 //==========================================
 
-router.delete('/:id', (req, res)=>{
-	Author.findByIdAndRemove(req.params.id, (err, foundAuthor)=>{
-		const articleIds = [];
-		for (let i = 0; i < foundAuthor.articles.length; i++) {
-			articleIds.push(foundAuthor.articles[i]._id);
-		}
-		Article.remove(
-			{
-				_id : {
-					$in: articleIds
-				}
-			},
-			(err, data)=>{
-				res.redirect('/authors');
-			}
-		);
-	});
+router.delete('/:id', async (req, res, err)=>{
+  try {
+    const deletedAuthor = await Authors.findByIdAndRemove(req.params.id, (err, foundAuthor))
+  } catch {
+    res.send(err);
+  }
 });
 
 

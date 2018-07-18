@@ -24,9 +24,9 @@ const sampleData = [
     }
 ]
 
-for (let user of sampleData){
+/*for (let user of sampleData){
     Users.create(user, (err, user)=>{console.log(user)})
-}
+}*/
 
 //create
 router.get('/new', (req, res) =>{
@@ -121,7 +121,7 @@ router.get('/:id', (req, res) =>{
 })
 
 //update
-router.get('/:id/edit', (req, res) =>{
+router.get('/:id/edit', async (req, res) =>{
     let user = Users.findById(req.params.id, (err, user)=>{
         if (user){
             res.render('users/edit.ejs', {

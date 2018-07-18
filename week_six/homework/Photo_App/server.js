@@ -18,6 +18,7 @@ app.use('/photos', photoController);
 const userController = require('./Controllers/userController');
 app.use('/users', userController);
 
+
 //   localhost:port/status
 app.get("/status", (req, res) =>{
     const localTime = (new Date()).toLocaleTimeString();
