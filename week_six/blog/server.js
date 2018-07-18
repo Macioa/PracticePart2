@@ -27,7 +27,7 @@ app.use('/articles', articlesController);
 const authorsController = require('./Controllers/Authors');
 app.use('/authors', authorsController);
 
-const authController = require('./Controllers/auth');
+const authController = require('./Controllers/Auth');
 app.use('/auth', authController);
 
 

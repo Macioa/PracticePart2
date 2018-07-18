@@ -7,6 +7,8 @@ const Author = require('../models/authors')
 //show all authors created in author index
 //=======================================================
 router.get('/', (req, res) => {
+    console.log(req.session)
+
   Article.find({}, (err, foundArticles) => {
 
 
