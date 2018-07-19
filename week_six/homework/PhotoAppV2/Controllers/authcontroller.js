@@ -5,15 +5,14 @@ const bcrypt = require('bcrypt');
 
 const chalk = require('chalk')
 
+//             REDIRECT
 router.get('/', (req, res) => {
-
   res.render('auth/login.ejs', {
     message: req.session.message
   });
-
 });
 
-
+//                LOGIN
 router.post('/login', async (req, res) => {
 
 
@@ -35,6 +34,7 @@ router.post('/login', async (req, res) => {
   })
 })
 
+//                REGISTER
 router.post('/register', (req, res)=>{
   const password = req.body.password;
   const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
@@ -50,13 +50,10 @@ router.post('/register', (req, res)=>{
   })
 })
 
-// LOGGING OUT OR DESTROYING THE SESSIOn
-
+//              LOGOUT
 router.get('/logout', (req, res) => {
-
   req.session.destroy((err) => {
     if(err){
-      // do something
       res.send('error destroying seesion');
     } else {
       res.redirect('/auth');

@@ -103,19 +103,6 @@ router.get('/:id', (req, res) =>{
             res.render('users/show.ejs', {
                 user: user
             })
-            // let photos = []
-            // let promise = new Promise(async function call(err, photo){return photo})
-            
-            // Photos.findById(user.photos[0], async function (err, photo){photos.push(photo)})
-            // setTimeout(3000, function(){console.log(photos)});
-            // async function findPhoto(id){
-            //     let photos = []
-            //     let promise = new Promise(Photos.find(id, await function(err, photo){photos.push(photo)}))
-            //     let p = await promise
-            //     console.log(p);
-            //     console.log(photos)
-            // }
-            // findPhoto(user.photos[0])
         }
     })
 })
@@ -133,6 +120,7 @@ router.get('/:id/edit', async (req, res) =>{
         }
     });
 });
+
 
 router.put('/:id', (req, res) =>{
     Users.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedUser) => {

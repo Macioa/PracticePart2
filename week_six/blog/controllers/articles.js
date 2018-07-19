@@ -9,10 +9,7 @@ const Author = require('../models/authors')
 router.get('/', (req, res) => {
     console.log(req.session)
     if (req.session.loggedIn === true){
-
         Article.find({}, (err, foundArticles) => {
-
-
             res.render('articles/index.ejs', {
             articles: foundArticles,
             username: req.session.username,
@@ -20,8 +17,6 @@ router.get('/', (req, res) => {
             })
         })
     } else {
-        //res.session.message('must log in');
-        //res.send('LOG IN FIRST!')
         res.redirect('/auth');
     }
 
