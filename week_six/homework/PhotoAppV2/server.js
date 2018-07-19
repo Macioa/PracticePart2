@@ -11,12 +11,26 @@ const app = express();
 var methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
+const session = require('express-session');
+app.use(session({
+    secret: 'secret key',
+    resave: false, 
+    saveUninitialized: false 
+  }));
+
 const bodyparser = require('body-parser');
 app.use(bodyparser.json()); 
 app.use( bodyparser.urlencoded( {extended: false} ));
 
+app.get('*', (req, res)=>{
+    res.send('middleware override')
+})
+
 const userController = require('./controllers/userController')
 app.use('/users', userController);
+
+const authController = require('./controllers/authController')
+app.use('/auth', userController)
 
 const photoController = require('./controllers/photoController')
 app.use('/photos', photoController);
