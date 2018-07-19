@@ -70,10 +70,6 @@ router.put('/:id', async (req, res) => {
   } catch {
     res.send(err);
   }
-  // Dog.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedDog)=> {
-  //   console.log(updatedDog, ' this is updatedDog');
-  //   res.redirect('/dogs');
-  // });
 });
 
 
@@ -85,15 +81,6 @@ router.post('/', (req, res) => {
   });
 });
 
-
-// router.delete('/:id', (req, res) => {
-
-//   Dog.findByIdAndRemove(req.params.id, (err, deletedDog) => {
-//     console.log(deletedDog, ' this is deletedDog');
-//     res.redirect('/dogs')
-//   })
-
-// });
 
 router.delete('/:id', async(req, res)=>{
   try {

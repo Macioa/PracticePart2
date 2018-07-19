@@ -63,31 +63,32 @@ const sampleData = [
     }
 ]
 
-/*for (let image of sampleData){
-    Photos.create(image, (err, photo)=>{console.log(photo)})
-}*/
-
 //create
 router.get('/new', (req, res) =>{
     res.render('photos/new.ejs');
 })
 
-router.post('/', (req, res)=>{
-    Users.find({'name':req.body.username}, (err, user)=>{
-        if (err)
-            console.error(`${req.body.username} not found`)
-        else {
-            Photos.create(req.body, (err, photo)=>{
-                if (err)
-                    console.error(err)
-                else {
-                    console.log(`Created ${photo}`)
-                    res.redirect('/');
-                }
-            })
-        }
-    })
-})
+router.post('/', async (req, res)=>{
+    var foundUser = await Users.find({'name':req.body.username}, async (err, user)=>{});
+    var newPhoto = await Photos.create(req.body, async (err, photo)=>{});
+    newPhoto.user_id=foundUser._id;
+    newPhoto.save();
+    newPhoto.remove();
+})   
+        // if (err)
+        //     console.error(`${req.body.username} not found`)
+        // else {
+        //     Photos.create(req.body, (err, photo)=>{
+        //         if (err)
+        //             console.error(err)
+        //         else {
+        //             console.log(`Created ${photo}`)
+        //             res.redirect('/');
+        //         }
+        //     })
+        // }
+    //})
+//})
 
 //read
 router.get('/', (req, res)=>{

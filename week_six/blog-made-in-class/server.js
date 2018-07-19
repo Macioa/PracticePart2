@@ -3,6 +3,9 @@ const app            = express();
 const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
 const session        = require('express-session');
+
+const bcrypt = require('bcrypt');
+
 // require db
 require('./db/db');
 
