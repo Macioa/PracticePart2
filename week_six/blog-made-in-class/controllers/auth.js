@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const User    = require('../models/users');
+const bcrypt = require('bcrypt');
 
 router.get('/', (req, res) => {
 
@@ -23,8 +24,23 @@ router.post('/login', (req, res) => {
   req.session.username = req.body.username;
 
   res.redirect('/articles');
-});
 
+})
+
+router.post('/register', (req, res)=>{
+  const password = req.body.password;
+  const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+
+  const userDbEntry = {};
+  userDbEntry.username= req.body.username;
+  userDbEntry.password= passwordHash;
+
+  User.create(userDbEntry, (err, user)=>{
+    req.session.username = user.username;
+    req.session.loggedIn = true;
+    res.redirect('/authors');
+  })
+})
 
 // LOGGING OUT OR DESTROYING THE SESSIOn
 
