@@ -3,7 +3,7 @@ const port = 3000;
 const chalk = require('chalk');
 
 var mongoose = require('./Db/db')
-mongoose = mongoose('mongodb://localhost:27017/photo-app');
+mongoose = mongoose('mongodb://localhost:27017/pa');
 
 const express = require('express');
 const app = express();

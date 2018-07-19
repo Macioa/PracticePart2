@@ -8,19 +8,23 @@ const chalk = require('chalk');
 const sampleData = [
     {
         username: "ryan",
-        email: "ryan@email.com"
+        email: "ryan@email.com",
+        password: "qwert"
     },
     {
         username: "george",
-        email:"george@email.com"
+        email:"george@email.com",
+        password: "asdf"
     },
     {
         username: "bob",
-        email: "bob@email.com"
+        email: "bob@email.com",
+        password: "vbnm"
     },
     {
         username: "yuri",
-        email: "yuri@email.com"
+        email: "yuri@email.com",
+        password: "uiop"
     }
 ]
 

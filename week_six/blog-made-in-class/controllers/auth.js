@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt');
 const chalk = require('chalk')
 
 router.get('/', (req, res) => {
-
   res.render('auth/login.ejs', {
     message: req.session.message
   });

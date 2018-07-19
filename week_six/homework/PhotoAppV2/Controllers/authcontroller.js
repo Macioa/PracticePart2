@@ -14,13 +14,13 @@ router.get('/', (req, res) => {
 
 //                LOGIN
 router.post('/login', async (req, res) => {
-
-
   console.log(req.session);
 
    var foundUser = await User.find({username:req.body.username}, (err, user)=>{
     if (user){
-      if (bcrypt.compare(bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)), user.password)){
+      let dbPassword = user.password;
+      let enteredPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+      if(  bcrypt.compare(enteredPassword, dbPassword)  ){
         console.log('password match');
         req.session.loggedIn = true;
         req.session.username = req.body.username;
@@ -41,12 +41,13 @@ router.post('/register', (req, res)=>{
 
   const userDbEntry = {};
   userDbEntry.username= req.body.username;
+  userDbEntry.email= req.body.email;
   userDbEntry.password= passwordHash;
 
   User.create(userDbEntry, (err, user)=>{
     req.session.username = user.username;
     req.session.loggedIn = true;
-    res.redirect('/authors');
+    res.redirect('/');
   })
 })
 

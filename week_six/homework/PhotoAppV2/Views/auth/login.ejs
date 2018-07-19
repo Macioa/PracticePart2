@@ -9,7 +9,7 @@
     <body>
 
     <h3>Log In</h3>
-    <form action="/users" method="POST">
+    <form action="/auth/login" method="POST">
         Name:
         <br><input type="text" name='username'>
         <br>Email:
@@ -17,14 +17,14 @@
         <br>Password:
         <br><input type="password" name="password">
         <br>
-        <br><input type="submit" value="Submit" onclick="onclick()">
+        <br><input type="submit" value="Submit">
     </form>
 
 
 
     <br><br><br>
     <h3>Register</h3>
-    <form action="/auth" method="POST">
+    <form action="/auth/register" method="POST">
     Name:
     <br><input type="text" name='username'>
     <br>Email:
@@ -32,7 +32,7 @@
     <br>Password:
     <br><input type="password" name="password">
     <br>
-    <br><input type="submit" value="Submit" onclick="onclick()">
+    <br><input type="submit" value="Submit">
 </form>
 
 
