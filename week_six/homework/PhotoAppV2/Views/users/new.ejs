@@ -8,17 +8,33 @@
     </head>
     <body>
 
+    <h3>Log In</h3>
     <form action="/users" method="POST">
         Name:
         <br><input type="text" name='username'>
         <br>Email:
         <br><input type="email" name='email'>
+        <br><input type="password" name="password">
         <br>
         <br><input type="submit" value="Submit" onclick="onclick()">
     </form>
 
+
+    
+    <br><br><br>
+    <h3>Register</h3>
+    <form action="/users" method="POST">
+    Name:
+    <br><input type="text" name='username'>
+    <br>Email:
+    <br><input type="email" name='email'>
+    <br><input type="password" name="password">
+    <br>
+    <br><input type="submit" value="Submit" onclick="onclick()">
+</form>
+
     <script>
-    const onclick = () => {localStorage.setItem('username', document.getElementById('username').value)}
+    const onclick = () => { localStorage.setItem('username', document.getElementById('username').value) }
     </script>
 
      </body>
