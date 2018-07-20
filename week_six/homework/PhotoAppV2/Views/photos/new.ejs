@@ -7,12 +7,12 @@
         <link href="../../css/style.css" rel="stylesheet">
     </head>
     <body>
-
+    <% include ../partials/header.ejs %>
     <form action="/photos" method="POST">
         Username:
         <br><input type="text" id='username' name='username' value ="">
         <br>url:
-        <br><input type="text" name='imgURL'>
+        <br><input type="text" name='url'>
         <br>About:
         <br><input type="textarea" name="about">
         <br>

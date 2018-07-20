@@ -28,9 +28,9 @@ const sampleData = [
     }
 ]
 
-/*for (let user of sampleData){
+for (let user of sampleData){
     Users.create(user, (err, user)=>{console.log(user)})
-}*/
+}
 
 //create
 router.get('/new', (req, res) =>{

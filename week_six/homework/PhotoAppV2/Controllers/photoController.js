@@ -63,6 +63,10 @@ const sampleData = [
     }
 ]
 
+for (let photo of sampleData){
+    Photos.create(photo)
+}
+
 //create
 router.get('/new', (req, res) =>{
     res.render('photos/new.ejs');

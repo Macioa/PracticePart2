@@ -7,7 +7,7 @@
         <link href="../../css/style.css" rel="stylesheet">
     </head>
     <body>
-
+    <% include ../partials/header.ejs %>
     <form action="/users/<%=user._id%>/upload?_method=PUT" method="POST">
         Username:
         <br><input type="text" id='username' name='username' value ="<%=user.username%>">

@@ -13,40 +13,48 @@ router.get('/', (req, res) => {
 });
 
 //                LOGIN
-router.post('/login', async (req, res) => {
+router.post('/login', (req, res) => {
   console.log(req.session);
 
-   var foundUser = await User.find({username:req.body.username}, (err, user)=>{
-    if (user){
-      let dbPassword = user.password;
-      let enteredPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-      if(  bcrypt.compare(enteredPassword, dbPassword)  ){
-        console.log('password match');
-        req.session.loggedIn = true;
-        req.session.username = req.body.username;
-        res.redirect('/articles');
-      } else {
-        console.log('password does not match');
-        req.session.loggedIn = false;
-        res.redirect('/login');
-      }
+   User.find({username:req.body.username}, async (err, user)=>{
+     try{
+          if (user){
+            let dbPassword = user.password;
+            let enteredPassword = await bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+            if(  bcrypt.compare(enteredPassword, dbPassword)  ){
+              console.log('password match');
+              req.session.loggedIn = true;
+              req.session.username = req.body.username;
+              res.redirect('/');
+            } else {
+              console.log('password does not match');
+              req.session.loggedIn = false;
+              res.redirect('/login');
+            }
+          }
+        } catch {
+
+        }
     }
-  })
+  )
 })
 
 //                REGISTER
 router.post('/register', (req, res)=>{
   const password = req.body.password;
   const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+  console.log(passwordHash)
 
   const userDbEntry = {};
   userDbEntry.username= req.body.username;
   userDbEntry.email= req.body.email;
   userDbEntry.password= passwordHash;
+  
 
   User.create(userDbEntry, (err, user)=>{
     req.session.username = user.username;
     req.session.loggedIn = true;
+    console.log(userDbEntry.password)
     res.redirect('/');
   })
 })

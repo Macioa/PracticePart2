@@ -7,6 +7,7 @@
         <link href="../../css/style.css" rel="stylesheet">
     </head>
     <body>
+    
     <img src="photo.url" alt="photo.about" height="50px"><br>
     <form action="/photos/<%=photo._id%>?_method=PUT" method="POST">
         Username:
@@ -24,10 +25,5 @@
     <input type="submit" value="Delete">
 </form>
 
-    <script>
-    if (localStorage.getItem('username'))
-        document.getElementById('username').value = localStorage.getItem('username');
-    </script>
-
-     </body>
+    </body>
 </html>
