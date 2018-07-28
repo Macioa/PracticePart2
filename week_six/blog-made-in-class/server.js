@@ -41,8 +41,9 @@ const articlesController = require('./controllers/articles');
 
 // set up controller routes
 app.use('/auth', userController);
-app.use('/authors', authorsController);
 app.use('/articles', articlesController);
+app.use('/authors', authorsController);
+
 
 app.get('/', (req, res) => {
   res.render('index.ejs');

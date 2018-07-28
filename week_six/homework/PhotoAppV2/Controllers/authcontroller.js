@@ -21,6 +21,7 @@ router.post('/login', (req, res) => {
           if (user){
             let dbPassword = user.password;
             let enteredPassword = await bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+            console.log(chalk.green(dbPassword, ))
             if(  bcrypt.compare(enteredPassword, dbPassword)  ){
               console.log('password match');
               req.session.loggedIn = true;
