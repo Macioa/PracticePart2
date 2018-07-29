@@ -16,14 +16,26 @@
 <script type="text/babel">
 const rootElement=document.getElementById('root');
 
-const props = {
-    className: "myClass",
-    style: { paddingLeft: 20, backgroundColor: 'blue' }
-        // {backgroundColor: grey}
-        // },
+function Box({style, className='', children, ...rest}){
+    return (
+        <div
+            className={`box ${className}`}
+            style={{borderStyle: 'solid', ...style}}
+            {...rest}
+        >{`${children} box`}</div>
+    )
 }
 
-const element = <div {...props}>Text</div>
+const props = {
+    className: "myClass",
+    style: { paddingTop: 20, backgroundColor: 'blue' }
+}
+
+const element = <div>
+                    <Box className="small" style={{backgroundColor:'lightblue', width:100}}>small</Box>
+                    <Box className="medium" style={{backgroundColor:'orange', width:200}}>medium</Box>
+                    <Box className="big" style={{backgroundColor:'lightgreen', width:400}}>big</Box>
+                </div>
 
 
 
