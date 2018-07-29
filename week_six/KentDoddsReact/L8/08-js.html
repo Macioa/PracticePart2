@@ -16,13 +16,17 @@
 <script type="text/babel">
 const rootElement=document.getElementById('root');
 
-function Box({style, className='', children, ...rest}){
+function Box({style, className='', size, children, ...rest}){
+    let classnamesize;
+    if (size<=100) classnamesize='small';
+    else if (size<=200) classnamesize='medium';
+    else if (size<=400) classnamesize='big';
     return (
         <div
-            className={`box ${className}`}
-            style={{borderStyle: 'solid', ...style}}
+            className={`${classnamesize}box ${className}`}
+            style={{borderStyle: 'solid', width: size, height: size, ...style}}
             {...rest}
-        >{`${children} box`}</div>
+        >{`${classnamesize} box`}</div>
     )
 }
 
@@ -32,9 +36,9 @@ const props = {
 }
 
 const element = <div>
-                    <Box className="small" style={{backgroundColor:'lightblue', width:100}}>small</Box>
-                    <Box className="medium" style={{backgroundColor:'orange', width:200}}>medium</Box>
-                    <Box className="big" style={{backgroundColor:'lightgreen', width:400}}>big</Box>
+                    <Box size={100} style={{backgroundColor:'lightblue'}}/>
+                    <Box size={200} style={{backgroundColor:'orange'}}/>
+                    <Box size={400} style={{backgroundColor:'lightgreen'}}/>
                 </div>
 
 
