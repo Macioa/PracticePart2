@@ -20,7 +20,12 @@ const rootElement=document.getElementById('root');
 const content = "hello world"
 const container = "container"
 
-const element = <div className={container}>{content}</div>;
+const props = {
+    className:  'container',
+    children: 'Hello World',
+}
+
+const element = <div {...props}></div>;
     
 ReactDOM.render(element, rootElement);
 
