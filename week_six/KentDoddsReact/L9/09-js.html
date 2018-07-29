@@ -16,8 +16,32 @@
 <script type="text/babel">
 const rootElement=document.getElementById('root');
 
+const state = {eventCount: 0, username: ''}
 
+function setState(newState){
+    Object.assign(state, newState);
+    renderApp();
+}
 
+function App(){
+    return (
+        <div>
+            <p>
+                Event count: {state.eventCount}
+            </p>
+            <button onClick={ increment }>Event</button>
+        </div>      
+    )
+}
 
-ReactDOM.render(element, rootElement)
+function increment(){
+   setState({eventCount: state.eventCount+1})
+}
+
+function renderApp(){
+    ReactDOM.render(<App/>, rootElement)
+}
+
+renderApp();
+
 </script>
