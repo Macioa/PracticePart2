@@ -30,6 +30,9 @@ function App(){
                 Event count: {state.eventCount}
             </p>
             <button onClick={ increment }>Event</button>
+            <p> Name: {state.username}
+            </p>
+            <input type="text" onChange={ event=>setState({username: event.target.value}) }/>
         </div>      
     )
 }
