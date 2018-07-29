@@ -1,0 +1,29 @@
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.production.min.js"></script>
+
+<div id="root"></div>
+<script type="text/javascript">
+const rootElement = document.getElementById('root')
+const element = document.createElement('div')
+
+element.textContent = 'Hello World'
+element.classname = 'container'
+rootElement.appendChild(element)
+
+// const element2 = React.createElement(
+//     'div', 
+//     {classname: 'container'},
+//     'Hello World',
+//     'Goodbye World',
+// )
+
+// console.log(element2);
+
+const element = <div className="container">Hello World</div>
+
+ReactDOM.render(element2, rootElement);
+
+
+
+</script>
