@@ -22,6 +22,8 @@ const helloWorld = <div>helloWorld</div>
 const content = "hello world"
 const container = "container"
 
+const message = (props) => <div>{props.msg}</div>
+
 const props = {
     className:  'container',
     children: 'Hello World',
@@ -29,8 +31,9 @@ const props = {
 
  const element = (
      <div {...props} class="myClass">
-     {helloWorld}
-     {helloWorld}
+     {message({msg: 'hello world'})}
+     {React.createElement(message, {msg: 'Hello World!'})}
+     <message>Goodbye World</message>
      </div>);
     
 ReactDOM.render(element, rootElement);
