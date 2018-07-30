@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 class Account extends Component {
   state={balance: 0}
 
-  handleClick=(e)=>{console.log(e.target.form.amount.value)
+  handleClick=(e)=>{
     let value=e.target.form.amount.value*1.0, balance = this.state.balance;
+    isNaN(value)?value=0:value=value;
     (e.target.value==="Deposit") ? value=value:value=-value
-    console.log(value)
     this.setState({balance: (balance+value>0)? balance+value:0})
   }
 
