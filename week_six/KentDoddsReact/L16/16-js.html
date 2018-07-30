@@ -17,25 +17,27 @@
 const rootElement=document.getElementById('root');
 
 class FormValues extends React.Component {
-    state = {csv: "", multiline: "", valueArray: [], optionArray: []}
+    state = {valueArray: []}
 
-    handleTextChange=(e)=>{
-        console.log(this.target.value)
-    }
-
-    setValue(ValueArray){
-        let csv=""
+    handleChange=(e)=>{
+        this.setState({
+            valueArray:
+                e.target.value
+                    .split(',')
+                    .map(v=>v.trim())
+        })
     }
 
     render(){
         return(
             <div>
                 CSV:
-                <input type="text" name="csv" onChange={this.handleTextChange}/><br/>
+                <input type="text" name="csv" onChange={this.handleChange} value={this.state.valueArray.join(', ')}/><br/>
                 Multiline:
-                <input size='500' type="textarea" name="multiline"/><br/>
+                <textarea rows='20' name="multiline" onChange={this.handleChange} value={this.state.valueArray.join('\n')}/><br/>
                 Selected:
-                <select id="select" ref={node => (this.inputNode=node)} children={this.state.optionArray}>
+                <select id="select">
+                    {this.state.valueArray.map((option)=><option value={option}>{option}</option>)}
                 </select>
             </div>
         )
