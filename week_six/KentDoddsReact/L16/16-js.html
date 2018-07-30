@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.production.min.js"></script>
+
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script type="text/babel">
+const rootElement=document.getElementById('root');
+
+class FormValues extends React.Component {
+    state = {csv: "", multiline: "", valueArray: [], optionArray: []}
+
+    handleTextChange=(e)=>{
+        console.log(this.target.value)
+    }
+
+    setValue(ValueArray){
+        let csv=""
+    }
+
+    render(){
+        return(
+            <div>
+                CSV:
+                <input type="text" name="csv" onChange={this.handleTextChange}/><br/>
+                Multiline:
+                <input size='500' type="textarea" name="multiline"/><br/>
+                Selected:
+                <select id="select" ref={node => (this.inputNode=node)} children={this.state.optionArray}>
+                </select>
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(<FormValues/>, rootElement)
+</script>
