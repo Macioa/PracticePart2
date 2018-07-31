@@ -15,7 +15,7 @@ class Account extends Component {
     return (
       <div className="account">
         <h2>{this.props.name}</h2>
-        <div className="balance">${this.state.balance}</div>
+        <div className="balance">${this.state.balance.toFixed(2)}</div>
         <form>
           <input type="number" min="0" step="0.01" placeholder="enter an amount" name="amount"/>
           <input type="button" value="Deposit" onClick={this.handleClick(1)}/>
