@@ -4,10 +4,15 @@ import './App.css';
 import Login from './Login' 
 
 class App extends Component {
+  state={ auth: false }
+  login=(newState)=>{
+    this.setState(newState);
+    console.log(newState)
+  }
   render() {
     return (
       <div className="App">
-        <Login/>
+        <Login login={this.login}/>
       </div>
     );
   }

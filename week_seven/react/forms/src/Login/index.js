@@ -2,12 +2,20 @@ import React, { Component } from 'react';
 
 class Login extends Component {
     state={ username:'', password:'' }
+    constructor(props){
+        super(props)
+        this.login=this.props.login
+    }
     handleChange=e=>{
         this.setState({[e.target.name] : e.target.value});
     }
+    handleSubmit=e=>{
+        e.preventDefault();
+        this.login({auth:this.state.username})
+    }
     render(){
         return(
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <input type='text' name='username' onChange={this.handleChange} value={this.state.username} placeholder='username'/>
                 <input type='password' name='password' onChange={this.handleChange} value={this.state.password} placeholder='password'/>
                 <input type='submit' value='Submit'/>
