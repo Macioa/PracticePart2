@@ -1,11 +1,11 @@
-import react, { Component } from 'react';
+import React, { Component } from 'react';
 
 class MainContainer extends Component{
-    return(){
+    render(){return(
         <div>
             Main Container!
         </div>
-    }
+    )}
 }
 
 export default MainContainer;

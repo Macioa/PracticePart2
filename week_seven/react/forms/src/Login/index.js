@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 class Login extends Component {
-    state={ username:'', password:'' }
+    state = {}
     constructor(props){
         super(props)
         this.login=this.props.login
     }
     handleChange=e=>{
-        this.setState({[e.target.name] : e.target.value});
+        this.setState({[e.target.name] : e.target.value.length ? e.target.value:false});
     }
     handleSubmit=e=>{
         e.preventDefault();
