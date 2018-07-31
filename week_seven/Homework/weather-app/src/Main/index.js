@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import LocationInput from './Presentational/LocationInput'
 
 class Main extends Component{
 
@@ -6,6 +7,8 @@ class Main extends Component{
         return(
             <div>
                 Main
+                <LocationInput/>
+
             </div>
         )
     }
