@@ -5,10 +5,15 @@ class Account extends Component {
   state={balance: 0}
 
   handleClick=p=>e=>{
-    let value=(e.target.form.amount.value*1.0).toFixed(2), balance = this.state.balance;
-    this.setState({balance: (balance+p*value>0)? 
-      (parseFloat(Math.round((balance+p*value)*100)).toFixed(2)/100) : 0
-    })
+    this.updateAccount(Math.floor(p*e.target.form.amount.value*100.0)/100);
+  }
+
+  updateAccount(value) {
+    let balance = this.state.balance;
+    this.setState({
+    balance: (balance + value > 0) ?
+      (parseFloat(Math.round((balance + value) * 100)) / 100) : 0
+    });
   }
 
   render() {
