@@ -5,9 +5,9 @@ class Account extends Component {
   state={balance: 0}
 
   handleClick=(e)=>{
-    let value=e.target.form.amount.value*1.0, balance = this.state.balance;
-    isNaN(value)?value=0:value=value;
-    (e.target.value==="Deposit") ? value=value:value=-value
+    let value=Math.abs(e.target.form.amount.value*1.0), balance = this.state.balance;
+    if (isNaN(value)) value=0;
+    if (e.target.value==="Deposit") value=-value;
     this.setState({balance: (balance+value>0)? balance+value:0})
   }
 
