@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import LocationInput from './Presentational/LocationInput'
+import LocationInput from './Stateful/LocationInput'
 
 class Main extends Component{
 
