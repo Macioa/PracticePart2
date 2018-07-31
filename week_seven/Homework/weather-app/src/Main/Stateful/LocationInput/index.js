@@ -3,15 +3,17 @@ import React, {Component} from 'react'
 
 class LocationInput extends Component{
     state={city:'',country:'', zip:''}
+    constructor(props){
+        super(props)
+        this.lift=this.props.lift
+    }
     handleChange=e=>{
         let filteredString = e.target.value.split('').filter(c=>!isNaN(c)).join('')
-
-        console.log(filteredString)
         this.setState({[e.target.name]:filteredString})
-
     }
     handleSubmit=e=>{
         e.preventDefault();
+        this.lift(this.state)
     }
     render(){
         return(
