@@ -5,7 +5,7 @@ class Account extends Component {
   state={balance: 0}
 
   handleClick=p=>e=>{
-    this.updateAccount(Math.floor(p*e.target.form.amount.value*100.0)/100);
+    this.updateAccount(Math.floor(Math.abs(p*e.target.form.amount.value*100.0))/100);
   }
 
   updateAccount(value) {
