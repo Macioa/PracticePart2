@@ -32,11 +32,11 @@
       var map;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: { lat: -122.4096667, lng: 38.0828333 },
-          zoom: 12
+          center: { lat: 30.2682, lng: -97.74295 },
+          zoom: 8
         });
         let quakes=getQuakes().then(data=>{
-                let array = data.features.map(feature=>({lat: feature.geometry.coordinates[0], lng: feature.geometry.coordinates[1]}))
+                let array = data.features.map(feature=>({lat: feature.geometry.coordinates[1], lng: feature.geometry.coordinates[0]}))
                 for (let item of array){
                     console.log(item)
                     let marker = new google.maps.Marker({position: item, map: map});
@@ -45,7 +45,7 @@
         )
       }
     </script>
-    <script src='https://maps.googleapis.com/maps/api/js?key=&callback=initMap'
+    <script src='https://maps.googleapis.com/maps/api/js?key=APIKEY&callback=initMap'
     async defer></script>
   </body>
 </html>
