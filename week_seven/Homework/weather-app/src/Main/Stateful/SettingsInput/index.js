@@ -22,6 +22,7 @@ class SettingsInput extends Component{
         return(
             <div>
                <form onSubmit={this.handleSubmit}>
+               ZIP: 
                 {/*<input type='text' name='city' placeholder='City Name' onChange={this.handleChange}/>
                 <input type='text' name='country' placeholder='Country Code' onChange={this.handleChange}/>*/}
                 <input name='zip' type='text' maxLength='5' placeholder='ZIP' value={this.state.zip} onChange={this.handleChange}/>

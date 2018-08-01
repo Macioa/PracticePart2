@@ -34,10 +34,9 @@ class Main extends Component{
     render(){
         return(
             <div>
-                Main
                 <SettingsInput lift={this.setSettings} update={this.update}/>
                 <button onClick={this.logState}>State</button>
-                <Report report={this.state.report}/>
+                {/*<Report report={this.state.report}/>*/}
             </div>
         )
     }
