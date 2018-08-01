@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import LocationInput from './Stateful/LocationInput'
+import SettingsInput from './Stateful/SettingsInput'
+import Report from './Presentational/Report'
 
 class Main extends Component{
     state={
@@ -10,17 +11,20 @@ class Main extends Component{
             _5day:'https://api.openweathermap.org/data/2.5/forecast?zip=',
             _16day: 'https://api.openweathermap.org/data/2.5/forecast/daily?zip='
         },
-        report:'none'
+        report:null
     }
     logState=()=>console.log(this.state)
-    setLocation=(location)=>{
-        this.getWeather(this.state.connect[this.state.reportType], location.zip).then(
-            weatherData=>this.setState({location:location, report:weatherData})
+    setSettings=(settings)=>this.setState({settings:settings})
+    update=(zip)=>{
+        this.getWeather(this.state.connect[this.state.reportType], zip).then(
+            weatherData=>this.setState({report:weatherData}).then(console.log('done'))
         )
     }    
-    getWeather=async(connectionString,zip)=>{
+    getWeather=async(connectionString)=>{
          try{
-            const weather = await fetch(`${connectionString}${zip},us&APPID=${this.state.appId}`)
+            let string = `${connectionString}${this.state.settings.zip},us&APPID=${this.state.appId}`;
+            console.log(`Connecting to ${string}`)
+            const weather = await fetch(string)
             const parsedWeather = await weather.json();
             return parsedWeather;
         } catch(err){
@@ -31,8 +35,9 @@ class Main extends Component{
         return(
             <div>
                 Main
-                <LocationInput lift={this.setLocation}/>
+                <SettingsInput lift={this.setSettings} update={this.update}/>
                 <button onClick={this.logState}>State</button>
+                <Report report={this.state.report}/>
             </div>
         )
     }
