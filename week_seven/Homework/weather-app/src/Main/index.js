@@ -11,18 +11,18 @@ class Main extends Component{
             _5day:'https://api.openweathermap.org/data/2.5/forecast?zip=',
             _16day: 'https://api.openweathermap.org/data/2.5/forecast/daily?zip='
         },
-        report:null
+        report:null,
+        location:{}
     }
-    logState=()=>console.log(this.state)
-    setSettings=(settings)=>this.setState({settings:settings})
-    update=(zip)=>{
-        this.getWeather(this.state.connect[this.state.reportType], zip).then(
+    receiveState=(newState)=>{this.setState(newState); console.log(newState)}
+    update=()=>{
+        this.getWeather(this.state.connect[this.state.reportType], this.state.zip).then(
             weatherData=>this.setState({report:weatherData}).then(console.log('done'))
         )
     }    
     getWeather=async(connectionString)=>{
          try{
-            let string = `${connectionString}${this.state.settings.zip},us&APPID=${this.state.appId}`;
+            let string = `${connectionString}${this.state.zip},us&APPID=${this.state.appId}`;
             console.log(`Connecting to ${string}`)
             const weather = await fetch(string)
             const parsedWeather = await weather.json();
@@ -34,8 +34,7 @@ class Main extends Component{
     render(){
         return(
             <div>
-                <SettingsInput lift={this.setSettings} update={this.update}/>
-                {/*<button onClick={this.logState}>State</button>*/}
+                <SettingsInput lift={this.receiveState} update={this.update} zip={this.state.zip}/>
                 <Report report={this.state.report}/>
             </div>
         )

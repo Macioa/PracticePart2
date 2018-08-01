@@ -2,21 +2,19 @@ import React, {Component} from 'react'
 
 
 class SettingsInput extends Component{
-    state={city:'',country:'', zip:''}
+    
     constructor(props){
         super(props)
-        this.lift=this.props.lift
-        this.update=this.props.update
+        this.lift=props.lift;
+        this.update=props.update;
     }
     handleChange=e=>{
         let filteredString = e.target.value.split('').filter(c=>!isNaN(c)).join('')
-        this.setState({[e.target.name]:filteredString})
-        this.lift(this.state)
+        this.lift({zip:filteredString})
     }
     handleSubmit=e=>{
         e.preventDefault();
-        this.lift(this.state)
-        this.update(this.state.zip)
+        this.update();
     }
     render(){
         return(
@@ -25,7 +23,7 @@ class SettingsInput extends Component{
                ZIP: 
                 {/*<input type='text' name='city' placeholder='City Name' onChange={this.handleChange}/>
                 <input type='text' name='country' placeholder='Country Code' onChange={this.handleChange}/>*/}
-                <input name='zip' type='text' maxLength='5' placeholder='ZIP' value={this.state.zip} onChange={this.handleChange}/>
+                <input name='zip' type='text' minLength='5' maxLength='5' placeholder='ZIP' value={this.props.zip} onChange={this.handleChange}/>
                 <br/>
                 <input type='submit'/>
                
